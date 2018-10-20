@@ -1,8 +1,9 @@
 let toRedirect = [
-	"imgs-3a85f4f1.png",
-	"imgs-1031af99.png",
-	"imgs-bc53aaf1.png",
-	"imgs-da5e6071.png"
+	"/assets/imgs-100-fd8c54a2.png",
+	"/assets/imgs-100-a665c3db.png",
+	"/assets/imgs-100-73663df4.png",
+	"/assets/imgs-100-22af036a.png",
+	"/img/surviv_logo_full.png"
 ];
 
 
@@ -11,8 +12,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 		// redirect image
 		let finalMatch;
 		toRedirect.forEach((imageToReplace) => {
+			let fileNameNoPath = imageToReplace.substring(imageToReplace.lastIndexOf('/')+1);
 			if (details.url.indexOf(imageToReplace) > -1) {
-				let override = `chrome-extension://${chrome.runtime.id}/img/${imageToReplace}`;
+				let override = `chrome-extension://${chrome.runtime.id}/img/${fileNameNoPath}`;
 				
 				console.log(`Redirecting ${imageToReplace}`);
 				finalMatch = {
